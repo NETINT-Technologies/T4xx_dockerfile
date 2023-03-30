@@ -13,7 +13,7 @@ SHELL ["/bin/bash", "-c"]
 
 #packages install
 RUN apt-get update
-RUN apt-get install -y pkg-config git gcc make g++ sudo wget uuid-runtime
+RUN apt-get install -y pkg-config git gcc make g++ sudo wget uuid-runtime udev
 
 #copy ni release package to docker /NI_Release directory
 COPY $NI_PACKAGE_NAME /NI_Release/
