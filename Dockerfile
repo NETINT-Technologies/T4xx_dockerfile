@@ -1,8 +1,8 @@
 FROM ubuntu:20.04
-MAINTAINER Steven Zhou
+MAINTAINER NETINT - FAE
 
 ENV REFRESHED_AT=2023-03-21
-ARG NI_RELEASE_VERSION=3.2.0
+ARG NI_RELEASE_VERSION=3.5.0
 ARG NI_PACKAGE_NAME="Codensity_T4XX_Software_Release_V${NI_RELEASE_VERSION}.tar.gz"
 #FFMPEG_VERSION can be: n3.1.1, n3.4.2, n4.1.3, n4.2.1, n4.3, n4.3.1, n4.3.2, n4.4, n5.0, n5.1.2
 ARG FFMPEG_VERSION=n5.0
@@ -46,11 +46,10 @@ RUN tar -xzf "$FFMPEG_PACKAGE_NAME"
 RUN cp /NI_Release/release/FFmpeg-"$FFMPEG_VERSION"_t4xx_patch /NI_Release/FFmpeg-"$FFMPEG_VERSION"/
 RUN mv /NI_Release/release/libxcoder_logan /NI_Release
 WORKDIR /NI_Release/libxcoder_logan
-RUN bash ./build.sh
+RUN echo 'y' | bash ./build.sh
 WORKDIR /NI_Release/FFmpeg-"$FFMPEG_VERSION"
 RUN patch -t -p 1 < FFmpeg-"$FFMPEG_VERSION"_t4xx_patch
-RUN chmod u+x build_ffmpeg.sh
-RUN chmod u+x run_ffmpeg_logan.sh
+RUN chmod u+x *.sh
 ENV PKG_CONFIG_PATH /usr/local/lib/pkgconfig/
 RUN echo 'y' | bash ./build_ffmpeg.sh --ffprobe --shared
 RUN make install
