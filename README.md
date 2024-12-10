@@ -6,7 +6,7 @@ The Dockerfile here can be used to create a docker image with Netint Logan
 libxcoder and FFmpeg installed.
 
 1. Copy the Netint SW release package(eg. 
-   Codensity_T4XX_Software_Release_V3.2.0.tar.gz) to same folder as Dockerfile
+   Codensity_T4XX_Software_Release_Vx.y.z.tar.gz) to same folder as Dockerfile
 
 2. Generate docker image:
 
@@ -14,8 +14,7 @@ libxcoder and FFmpeg installed.
 
    Two `--build-arg` options are supported in Dockerfile:
 
-       NI_RELEASE_VERSION=3.2.0    version number of Netint Logan SW release
-                                   package
+       NI_RELEASE_VERSION=x.y.z    version number of Netint Logan SW release package
        FFMPEG_VERSION=n5.0         version number of FFmpeg to use
 
 3. Start docker targeting logan NVMe device:
